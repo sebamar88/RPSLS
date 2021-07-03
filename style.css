@@ -19,7 +19,7 @@ h1 {
 }
 h2 {
     color: white;
-    margin: 2rem 0;
+    margin: 1.25rem 0;
     font-family: 'Tourney', sans-serif;
     text-align: center;
     font-size:1.75rem
@@ -27,7 +27,7 @@ h2 {
 
 h3 {
     color: white;
-    margin: 2rem 0;
+    margin: 1rem 0;
     font-family: 'Tourney', sans-serif;
     text-align: center;
     font-size:1.25rem
@@ -72,7 +72,7 @@ span {
 .miniGrid {
     display: flex;
     flex-flow: row wrap;
-    margin-top:2rem;
+    margin-top:1rem;
     padding: 0 1rem;
     justify-content: space-between;
 }
