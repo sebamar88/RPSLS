@@ -3,7 +3,7 @@ const computerChoiceDisplay = document.querySelector('#computerHand')
 const resultDisplay = document.getElementById('result')
 const possibleChoices = document.querySelectorAll('.gameButton');
 const winsCounterDisplay = document.getElementById('wins')
-const drawsCounterDisplay = document.getElementById('draws')
+const drawsCounterDisplay = document.getElementById('draw')
 const loseCounterDisplay = document.getElementById('lose')
 
 
