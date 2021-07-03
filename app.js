@@ -9,7 +9,7 @@ let result;
 
 possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
     userChoice = e.target.id
-    userChoiceDisplay.setAttribute('src', `${e.target.id}.png`)
+    userChoiceDisplay.setAttribute('src', `./imgs/${e.target.id}.png`)
     generateComputerChoice()
     getResult()
 }))
@@ -34,7 +34,7 @@ function generateComputerChoice() {
             computerChoice = 'spock'
     }
 
-    computerChoiceDisplay.setAttribute('src', `${computerChoice}.png`)
+    computerChoiceDisplay.setAttribute('src', `./imgs/${computerChoice}.png`)
 }
 
 function getResult() {
