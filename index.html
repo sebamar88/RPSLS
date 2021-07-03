@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+</head>
+<body>
+
+    <h1>Rock, Paper, Scissors, Lizzard & Spock</h1>
+
+    <div class="container">
+        <div class="grid">
+            <div class="col">
+                <img src="./descarga.png" alt="Game Picture" class="img-responsive">
+            </div>
+            <div class="col">
+                <h2 id="result"></h2>
+                <div class="miniGrid">
+                    <div class="gameImgs">
+                        <h3>Player Hand</h3>
+                        <img src="./Rock.png" alt="Player Hand" id="playerHand">
+                    </div>
+                    <div class="gameImgs">
+                        <h3>Computer Hand</h3>
+                        <img src="./Rock.png" alt="Computer Hand" id="computerHand">
+                    </div>
+                </div>
+                <div class="buttonGroup">
+                    <button id="rock" value="rock" class="gameButton" onClick="ButtonPress(this)">Rock</button>
+                    <button id="paper" value="paper" class="gameButton">Paper</button>
+                    <button id="scissors" value="scissors" class="gameButton">Scissors</button>
+                    <button id="lizzard" value="lizzard" class="gameButton">Lizzard</button>
+                    <button id="spock" value="spock" class="gameButton">Spock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

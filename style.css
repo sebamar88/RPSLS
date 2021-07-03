@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Tourney:wght@600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #15133c;
+}
+
+h1 {
+    color: white;
+    margin-top: 4rem;
+    font-family: 'Tourney', sans-serif;
+    text-align: center;
+    font-size:3rem
+}
+h2, h3 {
+    color: white;
+    margin: 2rem 0;
+    font-family: 'Tourney', sans-serif;
+    text-align: center;
+    font-size:1.75rem
+}
+
+.container {
+    max-width: 1640px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.grid {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top:2rem;
+    padding: 0 1rem;
+    justify-content:space-around;
+}
+.grid .col{
+    max-width: 750px;
+    padding: 0 1rem;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.img-responsive {
+    width: 100%;
+    height: auto;
+}
+
+.miniGrid {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top:2rem;
+    padding: 0 1rem;
+    justify-content: space-between;
+}
+
+.gameImgs{
+    max-width: 270px;
+    padding: 0 1rem;
+}
+
+.buttonGroup {
+    margin: 4rem 0;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+.gameButton{
+    border: none;
+    background-color: #eee;
+    padding: .5rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: 'Tourney', sans-serif;
+}
+
+@media (max-width:768px){
+    .gameButton{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: .5rem 0
+    }
+    h2,h3{
+        margin: .5rem 0
+    }
+    .buttonGroup{
+        margin: 2rem 0;
+    }
+}
+
+.gameButton:hover{
+    background-color: #aaa;
+}
