@@ -17,12 +17,20 @@ h1 {
     text-align: center;
     font-size:3rem
 }
-h2, h3 {
+h2 {
     color: white;
     margin: 2rem 0;
     font-family: 'Tourney', sans-serif;
     text-align: center;
     font-size:1.75rem
+}
+
+h3 {
+    color: white;
+    margin: 2rem 0;
+    font-family: 'Tourney', sans-serif;
+    text-align: center;
+    font-size:1.25rem
 }
 
 span {
@@ -70,8 +78,11 @@ span {
 }
 
 .gameImgs{
-    max-width: 270px;
+    max-width: 33%;
     padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .buttonGroup {
@@ -90,6 +101,20 @@ span {
     font-family: 'Tourney', sans-serif;
 }
 
+.order-1{
+    order: 1
+}
+.order-2{
+    order: 2
+}
+.order-3{
+    order: 3
+}
+
+.gameButton:hover{
+    background-color: #aaa;
+}
+
 @media (max-width:768px){
     .gameButton{
         width: 100%;
@@ -103,8 +128,24 @@ span {
     .buttonGroup{
         margin: 2rem 0;
     }
+    .score{
+        max-width:100% !important;
+        width:100%;
+        margin-top: .5rem;
+    }
+    .order-1{
+    max-width:50% !important
+    }
+    .order-2{
+        order: 3;
+        display: flex;
+        justify-content:center;
+    }
+    .order-3{
+        order: 2;
+        max-width:50%;
+    }
 }
 
-.gameButton:hover{
-    background-color: #aaa;
-}
+
+
