@@ -25,6 +25,14 @@ h2, h3 {
     font-size:1.75rem
 }
 
+span {
+    color: #5ec2b8;
+    margin: .25rem 0;
+    font-family: 'Tourney', sans-serif;
+    text-align: center;
+    font-size:1.3rem
+}
+
 .container {
     max-width: 1640px;
     margin: 0 auto;
