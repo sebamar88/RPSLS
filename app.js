@@ -7,8 +7,8 @@ const drawsCounterDisplay = document.getElementById('draws')
 const loseCounterDisplay = document.getElementById('lose')
 
 
-let playerChoise;
-let computerChoise;
+let userChoice;
+let computerChoice;
 let result;
 
 let drawCounter = 0;
