@@ -48,8 +48,8 @@ function generateComputerChoice() {
 function getResult() {
     if (computerChoice === userChoice) {
       result = "It's a draw!"
-      drawsCounter += 1;
-      drawsCounterDisplay.innerHTML = `You drew ${drawsCounter} times`
+      drawCounter += 1;
+      drawsCounterDisplay.innerHTML = `You drew ${drawCounter} times`
     }
     if (computerChoice === 'rock' && userChoice === "paper") {
       result = 'You win!'
