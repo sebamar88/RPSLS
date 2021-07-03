@@ -115,6 +115,10 @@ span {
     background-color: #aaa;
 }
 
+#total {
+    margin-top: 2rem;
+}
+
 @media (max-width:768px){
     .gameButton{
         width: 100%;

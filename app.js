@@ -5,6 +5,7 @@ const possibleChoices = document.querySelectorAll('.gameButton');
 const winsCounterDisplay = document.getElementById('wins')
 const drawsCounterDisplay = document.getElementById('draw')
 const loseCounterDisplay = document.getElementById('lose')
+const totalCounterDisplay = document.getElementById('total')
 
 
 let userChoice;
@@ -14,6 +15,7 @@ let result;
 let drawCounter = 0;
 let winsCounter = 0;
 let loseCounter = 0;
+let totalCounter = 0;
 
 possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
     userChoice = e.target.id
@@ -52,6 +54,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       drawCounter += 1;
       drawsCounterDisplay.innerHTML = `You drew ${drawCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'rock' && userChoice === "paper") {
       result = 'You win!'
@@ -59,6 +63,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       winsCounter += 1;
       winsCounterDisplay.innerHTML = `You won ${winsCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'rock' && userChoice === "spock") {
       result = 'You win!'
@@ -66,6 +72,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       winsCounter += 1;
       winsCounterDisplay.innerHTML = `You won ${winsCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'rock' && userChoice === "scissors") {
       result = 'You lose!'
@@ -73,6 +81,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       loseCounter += 1;
       loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'rock' && userChoice === "lizzard") {
       result = 'You lose!'
@@ -80,6 +90,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       loseCounter += 1;
       loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'paper' && userChoice === "scissors") {
       result = 'You win!'
@@ -87,6 +99,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       winsCounter += 1;
       winsCounterDisplay.innerHTML = `You won ${winsCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'paper' && userChoice === "lizzard") {
       result = 'You win!'
@@ -94,6 +108,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       winsCounter += 1;
       winsCounterDisplay.innerHTML = `You won ${winsCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'paper' && userChoice === "rock") {
       result = 'You lose!'
@@ -101,6 +117,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       loseCounter += 1;
       loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'paper' && userChoice === "spock") {
       result = 'You lose!'
@@ -108,6 +126,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       loseCounter += 1;
       loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'scissors' && userChoice === "rock") {
       result = 'You win!'
@@ -115,6 +135,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       winsCounter += 1;
       winsCounterDisplay.innerHTML = `You won ${winsCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'scissors' && userChoice === "spock") {
       result = 'You win!'
@@ -122,6 +144,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       winsCounter += 1;
       winsCounterDisplay.innerHTML = `You won ${winsCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'scissors' && userChoice === "paper") {
       result = 'You lose!'
@@ -129,6 +153,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       loseCounter += 1;
       loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'scissors' && userChoice === "lizzard") {
       result = 'You lose!'
@@ -136,6 +162,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       loseCounter += 1;
       loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'spock' && userChoice === "lizzard") {
       result = 'You win!'
@@ -143,6 +171,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       winsCounter += 1;
       winsCounterDisplay.innerHTML = `You won ${winsCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'spock' && userChoice === "paper") {
       result = 'You win!'
@@ -150,6 +180,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       winsCounter += 1;
       winsCounterDisplay.innerHTML = `You won ${winsCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'spock' && userChoice === "scissors") {
       result = 'You lose!'
@@ -157,6 +189,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       loseCounter += 1;
       loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'spock' && userChoice === "rock") {
       result = 'You lose!'
@@ -164,6 +198,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       loseCounter += 1;
       loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'lizzard' && userChoice === "scissors") {
       result = 'You win!'
@@ -171,6 +207,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       winsCounter += 1;
       winsCounterDisplay.innerHTML = `You won ${winsCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'lizzard' && userChoice === "rock") {
       result = 'You win!'
@@ -178,6 +216,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       winsCounter += 1;
       winsCounterDisplay.innerHTML = `You won ${winsCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'lizzard' && userChoice === "paper") {
       result = 'You lose!'
@@ -185,6 +225,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       loseCounter += 1;
       loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
     if (computerChoice === 'lizzard' && userChoice === "spock") {
       result = 'You lose!'
@@ -192,6 +234,8 @@ function getResult() {
       userChoiceDisplay.style.borderRadius = '50%'
       loseCounter += 1;
       loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`
+      totalCounter = loseCounter + winsCounter + drawCounter;
+      totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
     }
 
     resultDisplay.innerHTML = result
