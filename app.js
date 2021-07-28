@@ -3,10 +3,7 @@ class Score{
     return{
       win:win || 0,
       lose:lose || 0,
-      draw:draw || 0,
-      getTotal: ()=>{
-        return win+lose+draw || 0;
-      }
+      draw:draw || 0
     }
   }
 }
@@ -35,7 +32,7 @@ if(localStorage.getItem('score') != null){
   winsCounter = actualScore.win;
   loseCounter = actualScore.lose;
   drawCounter = actualScore.draw;
-  totalCounter = actualScore.getTotal;
+  totalCounter = loseCounter + winsCounter + drawCounter;
 }else{
   winsCounter = 0;
   loseCounter = 0;
@@ -75,7 +72,15 @@ function generateComputerChoice() {
     computerChoiceDisplay.setAttribute('src', `./imgs/${computerChoice}.png`)
 }
 
-function getResult() {
+const actualResult = () => {
+  resultDisplay.innerHTML = "Let's play!"
+  drawsCounterDisplay.innerHTML = `You drew ${drawCounter} times`;
+  winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+  loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+  totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`
+}
+
+const getResult = () => {
     if (computerChoice === userChoice) {
       result = "It's a draw!"
       userChoiceDisplay.style.boxShadow = 'none'
@@ -270,6 +275,6 @@ function getResult() {
   }
 
 
-
+  actualResult()
 
 
