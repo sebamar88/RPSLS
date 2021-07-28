@@ -41,7 +41,7 @@ const myToast = bootstrap.Toast.getInstance(errorToast)
 const showUser = () => {
   const actualUser = document.querySelector('#userLogged')
   const currentUser = JSON.parse(localStorage.getItem('user'))
-  actualUser.innerHTML = `Bienvenido ${currentUser}`;
+  actualUser.innerHTML = `Welcome ${currentUser}`;
 }
 
 if(localStorage.getItem('user') != null){
