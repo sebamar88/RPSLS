@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock | Paper | Scissors | Lizard | Spock Game</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="apple-touch-icon" sizes="57x57" href="./imgs/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./imgs/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./imgs/favicon/apple-icon-72x72.png">
@@ -27,8 +26,91 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="keywords" content="Rock, Paper, Scissors, Lizard & Spock Game">
     <meta name="description" content="Let's play rock, paper, scissors, lizard and spock!">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item logged-out"  style="display:none">
+                        <button class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#signupModal"><i class="bi bi-pen-fill"></i> Register</button>
+                    </li>
+                    <li class="nav-item logged-out"  style="display:none">
+                        <button class="btn btn-success fw-bold mx-3" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="bi bi-box-arrow-in-left"></i> Login</button>
+                    </li>
+                    <li class="nav-item logged-out"  style="display:none">
+                        <button class="btn btn-warning text-danger fw-bold" id="googleButton"><i class="bi bi-google"></i> Login with Google</button>
+                    </li>
+                    <li class="nav-item logged-in"  style="display:none">
+                        <button class="btn btn-danger fw-bold" id="logout"><i class="bi bi-box-arrow-right"></i> Log out</button>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Modal SignUp-->
+    <div class="modal fade" id="signupModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="signupModalLabel">Registrate</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="signupForm">
+                    <input placeholder="Full Name" type="text" name="name" id="signupName" class="form-control my-3" required>
+                    <input placeholder="E-mail" type="email" name="username" id="signupEmail" class="form-control my-3" required>
+                    <input placeholder="Password" type="password" name="password" id="signupPassword" class="form-control my-3" required>
+                    <button type="submit" class="btn btn-success">Registrarse</button>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal Login -->
+    <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="loginForm">
+                    <input placeholder="E-mail" type="email" name="username" id="loginEmail" class="form-control my-3">
+                    <input placeholder="Password" type="password" name="password" id="loginPassword" class="form-control my-3">
+                    <button type="submit" class="btn btn-secondary d-block w-100">Login with Email</button>
+                    <div class="d-flex justify-content-center">
+                        <div class="toast align-items-center text-white bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                              <div class="toast-body" id="errorLogin">
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </header>
 
     <h1>Rock, Paper, Scissors, Lizard & Spock</h1>
 
@@ -56,16 +138,43 @@
                     </div>
                 </div>
                 <div class="buttonGroup">
-                    <button id="rock" value="rock" class="gameButton">Rock</button>
-                    <button id="paper" value="paper" class="gameButton">Paper</button>
-                    <button id="scissors" value="scissors" class="gameButton">Scissors</button>
-                    <button id="lizard" value="lizard" class="gameButton">Lizard</button>
-                    <button id="spock" value="spock" class="gameButton">Spock</button>
+                    <button id="rock" value="rock" class="gameButton logged-in">Rock</button>
+                    <button id="paper" value="paper" class="gameButton logged-in">Paper</button>
+                    <button id="scissors" value="scissors" class="gameButton logged-in">Scissors</button>
+                    <button id="lizard" value="lizard" class="gameButton logged-in">Lizard</button>
+                    <button id="spock" value="spock" class="gameButton logged-in">Spock</button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
 
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    
+    <script>
+        // TODO: Replace the following with your app's Firebase project configuration
+    // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
+    const firebaseConfig = {
+        apiKey: "AIzaSyCE90A6NWeFLuqudkskGOI6tDoT270rv_k",
+        authDomain: "rpsls-1a11d.firebaseapp.com",
+        projectId: "rpsls-1a11d",
+        storageBucket: "rpsls-1a11d.appspot.com",
+        messagingSenderId: "589328090385",
+        appId: "1:589328090385:web:c69a16dac9ce791038f8b0",
+        measurementId: "G-6X989E1W3M"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+    </script>
+    <script src="./login.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
