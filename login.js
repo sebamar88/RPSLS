@@ -34,6 +34,14 @@ signupForm.addEventListener('submit', (e)=>{
 const loginForm = document.querySelector('#loginForm');
 const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
 const signinModal = new bootstrap.Modal(document.getElementById('loginModal'));
+const errorToast = document.querySelector('.toast')
+const errorMsg = document.querySelector('.toast-body')
+const toasClose = document.querySelector('#toastClose')
+const myToast = bootstrap.Toast.getInstance(errorToast)
+
+toasClose.addEventListener('click', ()=>{
+  errorToast.classList.toggle("show")
+})
 
 
 loginForm.addEventListener('submit', (e)=>{
