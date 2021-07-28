@@ -18,7 +18,6 @@ signupForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     const signupEmail = document.querySelector('#signupEmail').value
     const signupPassword = document.querySelector('#signupPassword').value
-    const signupName = document.querySelector('#signupName').value
 
     auth
         .createUserWithEmailAndPassword(signupEmail, signupPassword)
