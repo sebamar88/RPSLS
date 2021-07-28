@@ -38,6 +38,16 @@ const errorMsg = document.querySelector('.toast-body')
 const toasClose = document.querySelector('#toastClose')
 const myToast = bootstrap.Toast.getInstance(errorToast)
 
+const showUser = () => {
+  const actualUser = document.querySelector('#userLogged')
+  const currentUser = JSON.parse(localStorage.getItem('user'))
+  actualUser.innerHTML = `Bienvenido ${currentUser}`;
+}
+
+if(localStorage.getItem('user') != null){
+  showUser()
+}
+
 toasClose.addEventListener('click', ()=>{
   errorToast.classList.toggle("show")
 })
@@ -54,6 +64,8 @@ loginForm.addEventListener('submit', (e)=>{
             //clear form
             loginForm.reset();
             signinModal.hide();
+            localStorage.setItem('user', JSON.stringify(userCredential.user.email)) ;
+            showUser()
             console.log('Inicio de sesión exitoso')
         })
         .catch((error) => { // Error
@@ -76,6 +88,7 @@ loginForm.addEventListener('submit', (e)=>{
         });
 })
 
+
 //Logout
 const logoutButton = document.querySelector('#logout');
 
@@ -83,6 +96,7 @@ logoutButton.addEventListener('click', (e)=>{
     e.preventDefault();
     auth.signOut().then(()=>{
         console.log('Cerraste sesión de forma exitosa')
+        localStorage.clear();
         location.reload();
     })
 })
@@ -93,11 +107,8 @@ googleButton.addEventListener('click', (e)=>{
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider)
         .then(cred => {
-            return fs.collection('users').doc(cred.user.uid).set({
-                email: cred.user.email,
-                name: cred.user.displayName
-            });
-            
+          localStorage.setItem('user', JSON.stringify(cred.user.email)) ;
+          showUser()            
         })
         .then(result => {
             loginForm.reset();
