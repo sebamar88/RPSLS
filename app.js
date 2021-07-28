@@ -1,3 +1,16 @@
+class Score{
+  constructor(win, lose, draw){
+    return{
+      win:win || 0,
+      lose:lose || 0,
+      draw:draw || 0,
+      getTotal: ()=>{
+        return win+lose+draw || 0;
+      }
+    }
+  }
+}
+
 const userChoiceDisplay = document.querySelector('#playerHand')
 const computerChoiceDisplay = document.querySelector('#computerHand')
 const resultDisplay = document.getElementById('result')
@@ -12,16 +25,31 @@ let userChoice;
 let computerChoice;
 let result;
 
-let drawCounter = 0;
-let winsCounter = 0;
-let loseCounter = 0;
-let totalCounter = 0;
+let winsCounter;
+let loseCounter;
+let drawCounter;
+let totalCounter; 
+
+if(localStorage.getItem('score') != null){
+  const actualScore = JSON.parse(localStorage.getItem('score'))
+  winsCounter = actualScore.win;
+  loseCounter = actualScore.lose;
+  drawCounter = actualScore.draw;
+  totalCounter = actualScore.getTotal;
+}else{
+  winsCounter = 0;
+  loseCounter = 0;
+  drawCounter = 0;
+  totalCounter = 0;
+}
 
 possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
     userChoice = e.target.id
     userChoiceDisplay.setAttribute('src', `./imgs/${e.target.id}.png`)
     generateComputerChoice()
     getResult()
+    const score = new Score(winsCounter, loseCounter, drawCounter);
+    localStorage.setItem('score', JSON.stringify(score))
 }))
 
 function generateComputerChoice() {
