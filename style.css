@@ -47,22 +47,6 @@ span {
     padding: 0 1rem;
 }
 
-.grid {
-    display: flex;
-    flex-flow: row wrap;
-    margin-top:2rem;
-    padding: 0 1rem;
-    justify-content:space-around;
-}
-.grid .col{
-    max-width: 750px;
-    padding: 0 1rem;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
 
 .img-responsive {
     width: 100%;
@@ -90,6 +74,7 @@ span {
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;
+    width: 85%;
 }
 
 .gameButton{
@@ -101,15 +86,7 @@ span {
     font-family: 'Tourney', sans-serif;
 }
 
-.order-1{
-    order: 1
-}
-.order-2{
-    order: 2
-}
-.order-3{
-    order: 3
-}
+
 
 .gameButton:hover{
     background-color: #aaa;
@@ -137,18 +114,7 @@ span {
         width:100%;
         margin-top: .5rem;
     }
-    .order-1{
-    max-width:50% !important
-    }
-    .order-2{
-        order: 3;
-        display: flex;
-        justify-content:center;
-    }
-    .order-3{
-        order: 2;
-        max-width:50%;
-    }
+
 }
 
 
