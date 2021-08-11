@@ -1,3 +1,4 @@
+//Clases
 class Score {
   constructor(win, lose, draw) {
     return {
@@ -8,14 +9,7 @@ class Score {
   }
 }
 
-const userChoiceDisplay = document.querySelector("#playerHand");
-const computerChoiceDisplay = document.querySelector("#computerHand");
-const resultDisplay = document.getElementById("result");
-const possibleChoices = document.querySelectorAll(".gameButton");
-const winsCounterDisplay = document.getElementById("wins");
-const drawsCounterDisplay = document.getElementById("draw");
-const loseCounterDisplay = document.getElementById("lose");
-const totalCounterDisplay = document.getElementById("total");
+// Variables
 
 let userChoice;
 let computerChoice;
@@ -25,6 +19,8 @@ let winsCounter;
 let loseCounter;
 let drawCounter;
 let totalCounter;
+
+//Logica
 
 if (localStorage.getItem("score") != null) {
   const actualScore = JSON.parse(localStorage.getItem("score"));
@@ -39,16 +35,18 @@ if (localStorage.getItem("score") != null) {
   totalCounter = 0;
 }
 
-possibleChoices.forEach((possibleChoice) =>
-  possibleChoice.addEventListener("click", (e) => {
-    userChoice = e.target.id;
-    userChoiceDisplay.setAttribute("src", `./imgs/${e.target.id}.png`);
-    generateComputerChoice();
-    getResult();
-    const score = new Score(winsCounter, loseCounter, drawCounter);
-    localStorage.setItem("score", JSON.stringify(score));
-  })
-);
+//Eventos
+$('.gameButton').on('click', (e) => {
+  userChoice = e.target.id;
+  $('#playerHand').attr('src', `./imgs/${e.target.id}.png`)
+  generateComputerChoice();
+  getResult();
+  const score = new Score(winsCounter, loseCounter, drawCounter);
+  localStorage.setItem("score", JSON.stringify(score));
+})
+
+
+//Funciones
 
 const generateComputerChoice = () => {
   const randomNumber = Math.floor(Math.random() * 5) + 1; // or you can use possibleChoices.length
@@ -70,209 +68,210 @@ const generateComputerChoice = () => {
       computerChoice = "spock";
   }
 
-  computerChoiceDisplay.setAttribute("src", `./imgs/${computerChoice}.png`);
+  $('#computerHand').attr('src', `./imgs/${computerChoice}.png`);
 };
 
 const actualResult = () => {
-  resultDisplay.innerHTML = "Let's play!";
-  drawsCounterDisplay.innerHTML = `You drew ${drawCounter} times`;
-  winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
-  loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
-  totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+  $('#result').text("Let's play!");
+  $('#draw').text(`You drew ${drawCounter} times`);
+  $('#wins').text(`You won ${winsCounter} times`);
+  $('#lose').text(`You lost ${loseCounter} times`);
+  $('#total').text(`You played a total of ${totalCounter} times`);
 };
 
 const getResult = () => {
   if (computerChoice === userChoice) {
     result = "It's a draw!";
-    userChoiceDisplay.style.boxShadow = "none";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', 'none')
+    $('#playerHand').css('border-radius', '50%')
     drawCounter += 1;
-    drawsCounterDisplay.innerHTML = `You drew ${drawCounter} times`;
+    $('#draw').text(`You drew ${drawCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "rock" && userChoice === "paper") {
-    result = "You win!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #1dea37";
-    userChoiceDisplay.style.borderRadius = "50%";
+    result = "You win!";    
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+    $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
-    winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+    $('#wins').text(`You won ${winsCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "rock" && userChoice === "spock") {
     result = "You win!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #1dea37";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+    $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
-    winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+    $('#wins').text(`You won ${winsCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "rock" && userChoice === "scissors") {
     result = "You lose!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #ea3131";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+    $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
-    loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+    $('#lose').text(`You lost ${loseCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "rock" && userChoice === "lizard") {
     result = "You lose!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #ea3131";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+    $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
-    loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+    $('#lose').text(`You lost ${loseCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "paper" && userChoice === "scissors") {
     result = "You win!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #1dea37";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+    $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
-    winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+    $('#wins').text(`You won ${winsCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "paper" && userChoice === "lizard") {
     result = "You win!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #1dea37";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+    $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
-    winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+    $('#wins').text(`You won ${winsCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "paper" && userChoice === "rock") {
     result = "You lose!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #ea3131";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+    $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
-    loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+    $('#lose').text(`You lost ${loseCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "paper" && userChoice === "spock") {
     result = "You lose!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #ea3131";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+    $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
-    loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+    $('#lose').text(`You lost ${loseCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "scissors" && userChoice === "rock") {
     result = "You win!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #1dea37";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+    $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
-    winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+    $('#wins').text(`You won ${winsCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "scissors" && userChoice === "spock") {
     result = "You win!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #1dea37";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+    $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
-    winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+    $('#wins').text(`You won ${winsCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "scissors" && userChoice === "paper") {
     result = "You lose!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #ea3131";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+    $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
-    loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+    $('#lose').text(`You lost ${loseCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "scissors" && userChoice === "lizard") {
     result = "You lose!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #ea3131";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+    $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
-    loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+    $('#lose').text(`You lost ${loseCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "spock" && userChoice === "lizard") {
     result = "You win!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #1dea37";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+    $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
-    winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+    $('#wins').text(`You won ${winsCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "spock" && userChoice === "paper") {
     result = "You win!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #1dea37";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+    $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
-    winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+    $('#wins').text(`You won ${winsCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "spock" && userChoice === "scissors") {
     result = "You lose!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #ea3131";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+    $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
-    loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+    $('#lose').text(`You lost ${loseCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "spock" && userChoice === "rock") {
     result = "You lose!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #ea3131";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+    $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
-    loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+    $('#lose').text(`You lost ${loseCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "lizard" && userChoice === "scissors") {
     result = "You win!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #1dea37";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+    $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
-    winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+    $('#wins').text(`You won ${winsCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "lizard" && userChoice === "rock") {
     result = "You win!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #1dea37";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+    $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
-    winsCounterDisplay.innerHTML = `You won ${winsCounter} times`;
+    $('#wins').text(`You won ${winsCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "lizard" && userChoice === "paper") {
     result = "You lose!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #ea3131";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+    $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
-    loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+    $('#lose').text(`You lost ${loseCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "lizard" && userChoice === "spock") {
     result = "You lose!";
-    userChoiceDisplay.style.boxShadow = "0px 0px 25px 10px #ea3131";
-    userChoiceDisplay.style.borderRadius = "50%";
+    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+    $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
-    loseCounterDisplay.innerHTML = `You lost ${loseCounter} times`;
+    $('#lose').text(`You lost ${loseCounter} times`);
     totalCounter = loseCounter + winsCounter + drawCounter;
-    totalCounterDisplay.innerHTML = `You played a total of ${totalCounter} times`;
+    $('#total').text(`You played a total of ${totalCounter} times`);
   }
 
-  resultDisplay.innerHTML = result;
+  $('#result').text(result);
 };
 
 actualResult();
+
