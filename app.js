@@ -90,7 +90,8 @@ const getResult = () => {
     $('#total').text(`You played a total of ${totalCounter} times`);
   }
   if (computerChoice === "rock" && userChoice === "paper") {
-    result = "You win!";    
+    result = "You win!";
+    $('#playerHand').effect( "bounce", "slow" )    
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
     $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
@@ -100,6 +101,7 @@ const getResult = () => {
   }
   if (computerChoice === "rock" && userChoice === "spock") {
     result = "You win!";
+    $('#playerHand').effect( "bounce", "slow" )
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
     $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
@@ -109,6 +111,7 @@ const getResult = () => {
   }
   if (computerChoice === "rock" && userChoice === "scissors") {
     result = "You lose!";
+    $('#playerHand').effect('shake')
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
     $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
@@ -118,6 +121,7 @@ const getResult = () => {
   }
   if (computerChoice === "rock" && userChoice === "lizard") {
     result = "You lose!";
+    $('#playerHand').effect('shake')
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
     $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
@@ -127,6 +131,7 @@ const getResult = () => {
   }
   if (computerChoice === "paper" && userChoice === "scissors") {
     result = "You win!";
+    $('#playerHand').effect( "bounce", "slow" )
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
     $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
@@ -136,6 +141,7 @@ const getResult = () => {
   }
   if (computerChoice === "paper" && userChoice === "lizard") {
     result = "You win!";
+    $('#playerHand').effect( "bounce", "slow" )
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
     $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
@@ -145,6 +151,7 @@ const getResult = () => {
   }
   if (computerChoice === "paper" && userChoice === "rock") {
     result = "You lose!";
+    $('#playerHand').effect('shake')
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
     $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
@@ -154,6 +161,7 @@ const getResult = () => {
   }
   if (computerChoice === "paper" && userChoice === "spock") {
     result = "You lose!";
+    $('#playerHand').effect('shake')
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
     $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
@@ -163,6 +171,7 @@ const getResult = () => {
   }
   if (computerChoice === "scissors" && userChoice === "rock") {
     result = "You win!";
+    $('#playerHand').effect( "bounce", "slow" )
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
     $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
@@ -172,6 +181,7 @@ const getResult = () => {
   }
   if (computerChoice === "scissors" && userChoice === "spock") {
     result = "You win!";
+    $('#playerHand').effect( "bounce", "slow" )
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
     $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
@@ -181,6 +191,7 @@ const getResult = () => {
   }
   if (computerChoice === "scissors" && userChoice === "paper") {
     result = "You lose!";
+    $('#playerHand').effect('shake')
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
     $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
@@ -190,6 +201,7 @@ const getResult = () => {
   }
   if (computerChoice === "scissors" && userChoice === "lizard") {
     result = "You lose!";
+    $('#playerHand').effect('shake')
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
     $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
@@ -199,6 +211,7 @@ const getResult = () => {
   }
   if (computerChoice === "spock" && userChoice === "lizard") {
     result = "You win!";
+    $('#playerHand').effect( "bounce", "slow" )
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
     $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
@@ -208,6 +221,7 @@ const getResult = () => {
   }
   if (computerChoice === "spock" && userChoice === "paper") {
     result = "You win!";
+    $('#playerHand').effect( "bounce", "slow" )
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
     $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
@@ -217,6 +231,7 @@ const getResult = () => {
   }
   if (computerChoice === "spock" && userChoice === "scissors") {
     result = "You lose!";
+    $('#playerHand').effect('shake')
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
     $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
@@ -226,6 +241,7 @@ const getResult = () => {
   }
   if (computerChoice === "spock" && userChoice === "rock") {
     result = "You lose!";
+    $('#playerHand').effect('shake')
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
     $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
@@ -235,6 +251,7 @@ const getResult = () => {
   }
   if (computerChoice === "lizard" && userChoice === "scissors") {
     result = "You win!";
+    $('#playerHand').effect( "bounce", "slow" )
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
     $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
@@ -244,6 +261,7 @@ const getResult = () => {
   }
   if (computerChoice === "lizard" && userChoice === "rock") {
     result = "You win!";
+    $('#playerHand').effect( "bounce", "slow" )
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
     $('#playerHand').css('border-radius', '50%')
     winsCounter += 1;
@@ -253,6 +271,7 @@ const getResult = () => {
   }
   if (computerChoice === "lizard" && userChoice === "paper") {
     result = "You lose!";
+    $('#playerHand').effect('shake')
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
     $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
@@ -262,6 +281,7 @@ const getResult = () => {
   }
   if (computerChoice === "lizard" && userChoice === "spock") {
     result = "You lose!";
+    $('#playerHand').effect('shake')
     $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
     $('#playerHand').css('border-radius', '50%')
     loseCounter += 1;
