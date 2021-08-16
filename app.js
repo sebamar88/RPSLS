@@ -20,6 +20,59 @@ let loseCounter;
 let drawCounter;
 let totalCounter;
 
+const Choises = [
+  {
+    "title": "rock",
+    "choises": {
+      "scissors": "win",
+      "lizard": "win",
+      "spock": "lose",
+      "paper": "lose",
+      "rock": "draw",
+    }
+  },
+  {
+    "title": "scissors",
+    "choises": {
+      "paper": "win",
+      "lizard": "win",
+      "spock": "lose",
+      "rock": "lose",
+      "scissors": "draw",
+    }
+  },
+  {
+    "title": "paper",
+    "choises": {
+      "rock": "win",
+      "spock": "win",
+      "lizard": "lose",
+      "scissors": "lose",
+      "paper": "draw",
+    }
+  },
+  {
+    "title": "lizard",
+    "choises": {
+      "paper": "win",
+      "spock": "win",
+      "scissors": "lose",
+      "rock": "lose",
+      "lizard": "draw",
+    }
+  },
+  {
+    "title": "spock",
+    "choises": {
+      "scissors": "win",
+      "rock": "win",
+      "lizard": "lose",
+      "paper": "lose",
+      "spock": "draw",
+    }
+  },
+]
+
 //Logica
 
 if (localStorage.getItem("score") != null) {
@@ -40,13 +93,63 @@ $('.gameButton').on('click', (e) => {
   userChoice = e.target.id;
   $('#playerHand').attr('src', `./imgs/${e.target.id}.png`)
   generateComputerChoice();
-  getResult();
+  //getResult();
   const score = new Score(winsCounter, loseCounter, drawCounter);
   localStorage.setItem("score", JSON.stringify(score));
+  getResults(userChoice, computerChoice)
 })
 
 
 //Funciones
+
+function getKeyByValue(object, value) {
+  Object.entries(object).forEach(([key, val]) => {
+    if(key == value){
+      return val
+    }
+  });
+}
+
+const getResults = (player, computer) => {
+  const userPlay = Choises.find(choise => choise.title == player)
+
+  for(var prop in userPlay.choises) {
+    if(prop == computer){
+      switch(userPlay.choises[prop]){
+        case 'draw':
+          result = "It's a draw!";
+          $('#playerHand').css('box-shadow', 'none')
+          $('#playerHand').css('border-radius', '50%')
+          drawCounter += 1;
+          $('#draw').text(`You drew ${drawCounter} times`);
+          totalCounter = loseCounter + winsCounter + drawCounter;
+          $('#total').text(`You played a total of ${totalCounter} times`);
+          break;
+        case 'win':
+          result = "You win!";
+          $('#playerHand').effect( "bounce", "slow" )
+          $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
+          $('#playerHand').css('border-radius', '50%')
+          winsCounter += 1;
+          $('#wins').text(`You won ${winsCounter} times`);
+          totalCounter = loseCounter + winsCounter + drawCounter;
+          $('#total').text(`You played a total of ${totalCounter} times`);
+          break;
+        case 'lose':
+          result = "You lose!";
+          $('#playerHand').effect('shake')
+          $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
+          $('#playerHand').css('border-radius', '50%')
+          loseCounter += 1;
+          $('#lose').text(`You lost ${loseCounter} times`);
+          totalCounter = loseCounter + winsCounter + drawCounter;
+          $('#total').text(`You played a total of ${totalCounter} times`);
+      }
+      $('#result').text(result);
+    }  
+  }
+}
+
 
 const generateComputerChoice = () => {
   const randomNumber = Math.floor(Math.random() * 5) + 1; // or you can use possibleChoices.length
@@ -79,219 +182,7 @@ const actualResult = () => {
   $('#total').text(`You played a total of ${totalCounter} times`);
 };
 
-const getResult = () => {
-  if (computerChoice === userChoice) {
-    result = "It's a draw!";
-    $('#playerHand').css('box-shadow', 'none')
-    $('#playerHand').css('border-radius', '50%')
-    drawCounter += 1;
-    $('#draw').text(`You drew ${drawCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "rock" && userChoice === "paper") {
-    result = "You win!";
-    $('#playerHand').effect( "bounce", "slow" )    
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
-    $('#playerHand').css('border-radius', '50%')
-    winsCounter += 1;
-    $('#wins').text(`You won ${winsCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "rock" && userChoice === "spock") {
-    result = "You win!";
-    $('#playerHand').effect( "bounce", "slow" )
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
-    $('#playerHand').css('border-radius', '50%')
-    winsCounter += 1;
-    $('#wins').text(`You won ${winsCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "rock" && userChoice === "scissors") {
-    result = "You lose!";
-    $('#playerHand').effect('shake')
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
-    $('#playerHand').css('border-radius', '50%')
-    loseCounter += 1;
-    $('#lose').text(`You lost ${loseCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "rock" && userChoice === "lizard") {
-    result = "You lose!";
-    $('#playerHand').effect('shake')
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
-    $('#playerHand').css('border-radius', '50%')
-    loseCounter += 1;
-    $('#lose').text(`You lost ${loseCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "paper" && userChoice === "scissors") {
-    result = "You win!";
-    $('#playerHand').effect( "bounce", "slow" )
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
-    $('#playerHand').css('border-radius', '50%')
-    winsCounter += 1;
-    $('#wins').text(`You won ${winsCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "paper" && userChoice === "lizard") {
-    result = "You win!";
-    $('#playerHand').effect( "bounce", "slow" )
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
-    $('#playerHand').css('border-radius', '50%')
-    winsCounter += 1;
-    $('#wins').text(`You won ${winsCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "paper" && userChoice === "rock") {
-    result = "You lose!";
-    $('#playerHand').effect('shake')
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
-    $('#playerHand').css('border-radius', '50%')
-    loseCounter += 1;
-    $('#lose').text(`You lost ${loseCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "paper" && userChoice === "spock") {
-    result = "You lose!";
-    $('#playerHand').effect('shake')
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
-    $('#playerHand').css('border-radius', '50%')
-    loseCounter += 1;
-    $('#lose').text(`You lost ${loseCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "scissors" && userChoice === "rock") {
-    result = "You win!";
-    $('#playerHand').effect( "bounce", "slow" )
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
-    $('#playerHand').css('border-radius', '50%')
-    winsCounter += 1;
-    $('#wins').text(`You won ${winsCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "scissors" && userChoice === "spock") {
-    result = "You win!";
-    $('#playerHand').effect( "bounce", "slow" )
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
-    $('#playerHand').css('border-radius', '50%')
-    winsCounter += 1;
-    $('#wins').text(`You won ${winsCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "scissors" && userChoice === "paper") {
-    result = "You lose!";
-    $('#playerHand').effect('shake')
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
-    $('#playerHand').css('border-radius', '50%')
-    loseCounter += 1;
-    $('#lose').text(`You lost ${loseCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "scissors" && userChoice === "lizard") {
-    result = "You lose!";
-    $('#playerHand').effect('shake')
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
-    $('#playerHand').css('border-radius', '50%')
-    loseCounter += 1;
-    $('#lose').text(`You lost ${loseCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "spock" && userChoice === "lizard") {
-    result = "You win!";
-    $('#playerHand').effect( "bounce", "slow" )
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
-    $('#playerHand').css('border-radius', '50%')
-    winsCounter += 1;
-    $('#wins').text(`You won ${winsCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "spock" && userChoice === "paper") {
-    result = "You win!";
-    $('#playerHand').effect( "bounce", "slow" )
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
-    $('#playerHand').css('border-radius', '50%')
-    winsCounter += 1;
-    $('#wins').text(`You won ${winsCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "spock" && userChoice === "scissors") {
-    result = "You lose!";
-    $('#playerHand').effect('shake')
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
-    $('#playerHand').css('border-radius', '50%')
-    loseCounter += 1;
-    $('#lose').text(`You lost ${loseCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "spock" && userChoice === "rock") {
-    result = "You lose!";
-    $('#playerHand').effect('shake')
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
-    $('#playerHand').css('border-radius', '50%')
-    loseCounter += 1;
-    $('#lose').text(`You lost ${loseCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "lizard" && userChoice === "scissors") {
-    result = "You win!";
-    $('#playerHand').effect( "bounce", "slow" )
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
-    $('#playerHand').css('border-radius', '50%')
-    winsCounter += 1;
-    $('#wins').text(`You won ${winsCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "lizard" && userChoice === "rock") {
-    result = "You win!";
-    $('#playerHand').effect( "bounce", "slow" )
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #1dea37')
-    $('#playerHand').css('border-radius', '50%')
-    winsCounter += 1;
-    $('#wins').text(`You won ${winsCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "lizard" && userChoice === "paper") {
-    result = "You lose!";
-    $('#playerHand').effect('shake')
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
-    $('#playerHand').css('border-radius', '50%')
-    loseCounter += 1;
-    $('#lose').text(`You lost ${loseCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
-  if (computerChoice === "lizard" && userChoice === "spock") {
-    result = "You lose!";
-    $('#playerHand').effect('shake')
-    $('#playerHand').css('box-shadow', '0px 0px 25px 10px #ea3131')
-    $('#playerHand').css('border-radius', '50%')
-    loseCounter += 1;
-    $('#lose').text(`You lost ${loseCounter} times`);
-    totalCounter = loseCounter + winsCounter + drawCounter;
-    $('#total').text(`You played a total of ${totalCounter} times`);
-  }
 
-  $('#result').text(result);
-};
 
 actualResult();
 
