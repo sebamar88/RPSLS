@@ -1,6 +1,6 @@
 // Style for Logged and not
-const loggedOutLinks = document.querySelectorAll(".logged-out");
-const loggedInLinks = document.querySelectorAll(".logged-in");
+//const loggedOutLinks = document.querySelectorAll(".logged-out");
+//const loggedInLinks = document.querySelectorAll(".logged-in");
 
 // Register Toast
 const errorToastR = document.querySelector(".toastR");
@@ -27,15 +27,15 @@ const logoutButton = document.querySelector("#logout");
 const googleButton = document.querySelector("#googleButton");
 
 // Functions 
-const loginCheck = (user) => {
-    if (user) {
-        loggedInLinks.forEach((link) => (link.style.display = "block"));
-        loggedOutLinks.forEach((link) => (link.style.display = "none"));
-    } else {
-        loggedInLinks.forEach((link) => (link.style.display = "none"));
-        loggedOutLinks.forEach((link) => (link.style.display = "block"));
-    }
-};
+//const loginCheck = (user) => {
+    //if (user) {
+       // loggedInLinks.forEach((link) => (link.style.display = "block"));
+       // loggedOutLinks.forEach((link) => (link.style.display = "none"));
+   // } else {
+   //     loggedInLinks.forEach((link) => (link.style.display = "none"));
+   //     loggedOutLinks.forEach((link) => (link.style.display = "block"));
+   // }
+//};
 
 
 const showUser = () => {
@@ -160,10 +160,10 @@ googleButton.addEventListener("click", (e) => {
 
 
 // list for auth state change
-auth.onAuthStateChanged((user) => {
-    if (user) {
-        loginCheck(user);
-    } else {
-        loginCheck(user);
-    }
-});
+//auth.onAuthStateChanged((user) => {
+ //   if (user) {
+ //       loginCheck(user);
+ //   } else {
+ //       loginCheck(user);
+//    }
+//});
